@@ -1,17 +1,8 @@
-import React, { Component } from 'react'
-import { NavigationRouter } from 'react-navigation';
-import Routers from './router/routes'
-class App extends Component {
-    render() {
-        return (
-            <NavigationRouter
-                routes={Routers}                // 路由表
-                initialRoute={'MyIntegral'}   // 默认加载页面
-                {...this.props}
-            />
-        )
-    }
-}
+import React from 'react'
+import { createAppContainer } from 'react-navigation';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
+import { Router,Icon } from './router/routes'
+const TabNavigator = createBottomTabNavigator(Router,Icon);
 
+export default createAppContainer(TabNavigator);
 
-export default App

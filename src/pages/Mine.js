@@ -1,17 +1,19 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet,Button } from 'react-native'
 import styleUtil from '../utils/styleUtil'
 const px = styleUtil.pxToDpWidth
 class Mine extends Component {
-    static navigationOptions = ({ navigation }) => {
-        return {
-            header: () => null, // 隐藏头部  
-        }
-    }
+    static navigationOptions = {
+        title: '我的',
+    };
     render() {
         return (
             <View style={styles.homeContent}>
                 <Text style={styles.header}>我 的</Text>
+                <Button
+                    title="Go back"
+                    onPress={() => this.props.navigation.goBack()}
+                />
             </View>
         )
     }

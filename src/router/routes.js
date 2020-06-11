@@ -1,6 +1,7 @@
 import React from 'react'
 import Home from '../pages/Home'
 import Mine from '../pages/Mine'
+import H5 from '../components/base/H5WebView'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 export const Router = {
     Home: {
@@ -8,6 +9,7 @@ export const Router = {
         screen: Home
     }, // 登录页
     Mine: { screen: Mine }, // 注册页
+    // H5: { screen: H5 }, // 注册页
 
 }
 export const Icon = {

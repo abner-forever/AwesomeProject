@@ -1,30 +1,35 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import styleUtil from '../utils/styleUtil'
 import Button from '../components/base/Button'
 const px = styleUtil.pxToDpWidth
-class Home extends Component {
-    static navigationOptions = {
+function Home(props) {
+    const navigationOptions = {
         title: '主页',
     };
-    componentDidMount() {
-    }
-    render() {
-        const { navigate } = this.props.navigation;
-        return (
-            <View style={styles.homeContent}>
-                <Text style={styles.header}>首页</Text>
-                <Button
-                    title="我的"
-                    onPress={() =>
-                        navigate('Mine', { name: 'Jane' })
-                    }
-                    buttonStyle={styles.button}
-                    textStyle={styles.text}
-                />
-            </View>
-        )
-    }
+    const [count,setCount ] = useState(0)
+    useEffect(()=>{
+        // console.warn('props',count);
+       if(count>5){
+        const { navigate } = props.navigation;  
+        navigate('Mine', { name: '福利' })
+       } 
+    })
+    
+    return (
+        <View style={styles.homeContent}>
+            <Text style={styles.header}>首页</Text>
+            <Button
+                title="点击"
+                onPress={() =>
+                   setCount(count+1) 
+                }
+                buttonStyle={styles.button}
+                textStyle={styles.text}
+            />
+            <Text>{`你点击了${count}次`}</Text>
+        </View>
+    )
 }
 
 const styles = StyleSheet.create({
@@ -43,10 +48,10 @@ const styles = StyleSheet.create({
     button: {
         width: px(100),
         height: px(50),
-        borderRadius:px(4)
+        borderRadius: px(4)
     },
-    text:{
-        color:'#3647ff'
+    text: {
+        color: '#3647ff'
     }
 })
 

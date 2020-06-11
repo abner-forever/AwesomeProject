@@ -18,13 +18,15 @@ export default class Button extends Component {
 }
 const styles = StyleSheet.create({
     button: {
-        padding: 10,
-        marginLeft: 15,
-        marginRight: 15,
+        paddingLeft: 8,
+        paddingRight:8,
+        paddingTop:2,
+        paddingBottom:2,
         backgroundColor: '#4d86f7',
         justifyContent: 'center',
         alignItems: 'center',
-        flexDirection: 'row'
+        flexDirection: 'row',
+        borderRadius:4
     },
     text:{
         color:'#fff'

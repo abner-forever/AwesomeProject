@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, Button } from 'react-native'
+import { ScrollView } from 'react-native-gesture-handler'
 
 import ListItem from '../components/mineComponents/listItem'
-import { ScrollView } from 'react-native-gesture-handler'
+import store from '../store'
 
 import styleUtil from '../utils/styleUtil'
 const px = styleUtil.pxToDpWidth
@@ -12,12 +13,27 @@ class Mine extends Component {
     };
     constructor(props) {
         super(props)
+        let state = store.getState()
         this.state = {
-            list: null
+            list: null,
+            counter: state.counter.value,
         }
+        // 准备一个监听器
+        const changeListener = () => {
+            // 当 store 中的状态发生变化时，
+            // 将 store 中的新状态通过this.setState 设置到本组件,
+            // 从而触发本组件被重新渲染输出
+            console.log("in changeListener : ");
+            console.log(store.getState());
+
+            const state = store.getState();
+            this.setState({counter: state.counter.value});
+        };
+        // 监听Redux store中状态的变化
+        store.subscribe(changeListener);
     }
     requestList = () => {
-        fetch('http://localhost:3003/clubpage').then(response => response.json()).then((res) => {
+        fetch('http://localhost:3004/articlelist').then(response => response.json()).then((res) => {
             console.log('res', res)
             this.setState({
                 list: res.data.list
@@ -28,36 +44,34 @@ class Mine extends Component {
     }
     componentDidMount() {
         this.requestList()
+
     }
-    navigate = (url)=>{
-        url && this.props.navigation.navigate('H5',{url})
+    navigate = (url) => {
+        url && this.props.navigation.navigate('H5', { url })
+    }
+    _addCount =()=>{
+        store.dispatch({type:'INCREMENT'})
     }
     render() {
         const { state } = this.props.navigation;
         return (
             <View style={styles.homeContent}>
-                {/* <Button
-                        title="Go back"
-                        onPress={() => this.props.navigation.goBack()}
-                    /> */}
-                <Text style={styles.header}>{state.params && state.params.name||'福利'}</Text>
-                <ScrollView  >
 
+                <Text style={styles.header}>{state.params && state.params.name || '福利'}</Text>
+                <ScrollView  >
+                    <Button
+                        title="count"
+                        onPress={() => this._addCount()}
+                    />
+                    <Text>{this.state.counter}</Text>
                     {
                         this.state.list && this.state.list.map((item, index) => (
                             <View key={index}>
-                                <Text>{item.title}</Text>
-                                <View style={styles.content}>
-                                    {
-                                        typeof item.list.splice === 'function' && item.list.map((cases, i) => (
-                                            <ListItem
-                                                key={i}
-                                                item={cases}
-                                                navigate ={this.navigate}
-                                            />
-                                        ))
-                                    }
-                                </View>
+                                <ListItem
+                                    key={index}
+                                    item={item}
+                                    navigate={this.navigate}
+                                />
                             </View>
                         ))
                     }

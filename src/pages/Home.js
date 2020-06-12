@@ -2,32 +2,39 @@ import React, { useState, useEffect } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import styleUtil from '../utils/styleUtil'
 import Button from '../components/base/Button'
+import store from '../store'
 const px = styleUtil.pxToDpWidth
 function Home(props) {
     const navigationOptions = {
         title: '主页',
     };
-    const [count,setCount ] = useState(0)
-    useEffect(()=>{
-        // console.warn('props',count);
-       if(count>5){
-        const { navigate } = props.navigation;  
-        navigate('Mine', { name: '福利' })
-       } 
-    })
-    
+    const state = store.getState()
+    let count = state.counter.value
+    // const [count, setCount] = useState(state.counter.value)
+    // useEffect(() => {
+    //     // console.warn('props',count);
+    //     if (count > 0) {
+           
+    //     }
+    // })
+    changeListener = () => {
+        count = state.counter.value
+    };
+    // 监听Redux store中状态的变化
+    store.subscribe(this.changeListener);
+    _addCount =()=>{
+        store.dispatch({ type: 'INCREMENT' })
+    }
     return (
         <View style={styles.homeContent}>
             <Text style={styles.header}>首页</Text>
             <Button
                 title="点击"
-                onPress={() =>
-                   setCount(count+1) 
-                }
+                onPress={() =>this._addCount()}
                 buttonStyle={styles.button}
                 textStyle={styles.text}
             />
-            <Text>{`你点击了${count}次`}</Text>
+            <Text>{`你点击了${state.counter.value}次`}</Text>
         </View>
     )
 }

@@ -1,0 +1,47 @@
+{
+    "articlelist": {
+        "code": "A0000",
+        "msg": "success",
+        "data": {
+            "hasMore": false,
+            "list": [
+                {
+                    "userId": 126,
+                    "userIcon": "http://img7.iqiyipic.com/passport/20190726/fd/bd/passport_1491111737_156411351073482_130_130.jpg",
+                    "userName": "张三",
+                    "sex": 1,
+                    "phone": "19920181234",
+                    "articleId": 100017,
+                    "title": "react基础",
+                    "createTime": "2019-09-29 15:51:21",
+                    "updateTime": "2020-04-30 16:11:54",
+                    "desc": "文章简短描述 截取文章第一段数据"
+                },
+                {
+                    "userId": 126,
+                    "userIcon": "http://img7.iqiyipic.com/passport/20190726/fd/bd/passport_1491111737_156411351073482_130_130.jpg",
+                    "userName": "张三",
+                    "sex": 1,
+                    "phone": "19920181234",
+                    "articleId": 100032,
+                    "title": "如何新增一篇文章",
+                    "createTime": "",
+                    "updateTime": "2020-04-19 19:32:15",
+                    "desc": "文章简短描述 截取文章第一段数据"
+                },
+                {
+                    "userId": 123,
+                    "userIcon": "http://img7.iqiyipic.com/passport/20190726/fd/bd/passport_1491111737_156411351073482_130_130.jpg",
+                    "userName": "Abner",
+                    "sex": 1,
+                    "phone": "123123123123",
+                    "articleId": 100033,
+                    "title": "年前工作",
+                    "createTime": "",
+                    "updateTime": "2020-04-19 19:34:22",
+                    "desc": "文章简短描述 截取文章第一段数据"
+                }
+            ]
+        }
+    }
+}

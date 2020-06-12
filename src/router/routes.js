@@ -1,7 +1,7 @@
 import React from 'react'
 import Home from '../pages/Home'
 import Mine from '../pages/Mine'
-import H5 from '../components/base/H5WebView'
+import {connect} from 'react-redux'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 export const Router = {
     Home: {

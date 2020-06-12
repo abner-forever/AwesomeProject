@@ -1,28 +1,33 @@
 import React from 'react'
 import { View, Text, Image, StyleSheet } from 'react-native'
-import  Button from '../base/Button'
+import Button from '../base/Button'
 import styleUtil from '../../utils/styleUtil'
+import CommonStyle from '../CommonStyle'
 const px = styleUtil.pxToDpWidth
 
 function ListItem(props) {
     let {
         image,
         title,
-        subTitle,
-        icon
+        userName,
+        updateTime,
+        userIcon
     } = props.item
     return (
         <View style={styles.contentItem}>
-            <Image style={styles.image} source={{ uri: image }} />
+            <View style={CommonStyle.row}>
+                <Image style={styles.image} source={{ uri: userIcon }} />
+                <Text style={styles.userName}>{userName}</Text>
+            </View>
             <View style={styles.bottom}>
                 <Text style={styles.title}>{title}</Text>
                 <View style={styles.box}>
-                    <Text style={styles.subTitle}>{subTitle}</Text>
-                        <Button
-                        title={'领取'}
+                    <Text style={styles.subTitle}>{updateTime}</Text>
+                    <Button
+                        title={'查看'}
                         onPress={() => { props.navigate(icon.pageUrl) }}
                         buttonStyle={styles.button}
-                        />
+                    />
                 </View>
             </View>
         </View>
@@ -32,11 +37,19 @@ function ListItem(props) {
 const styles = StyleSheet.create({
     contentItem: {
         backgroundColor: '#fff',
-        marginTop: px(36)
+        marginTop: px(20),
+        padding:px(12)
     },
     image: {
-        width: px(350),
-        height: px(200)
+        width: px(60),
+        height: px(60),
+        borderRadius: px(30),
+        borderColor: '#ccc',
+        borderWidth: px(2)
+    },
+    userName:{
+        marginLeft:px(10),
+        color:'#666'
     },
     bottom: {
         paddingRight: px(10),
@@ -50,16 +63,20 @@ const styles = StyleSheet.create({
     },
     subTitle: {
         fontSize: px(24),
-        color: '#999'
+        color: '#999',
+        marginRight: px(10),
+        position: 'relative'
     },
-    box:{
-        flexDirection:'row',
-        alignItems:'center',
-        justifyContent:'space-between'
+    box: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        // justifyContent:'space-between'
     },
-    button:{
-        backgroundColor:'pink',
-        borderRadius:px(4)
+    button: {
+        backgroundColor: 'pink',
+        borderRadius: px(4),
+        position: 'absolute',
+        right: px(10)
     }
 })
 export default ListItem

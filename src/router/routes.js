@@ -1,8 +1,10 @@
 import React from 'react'
 import Home from '../pages/Home'
 import Mine from '../pages/Mine'
+import H5 from '../components/base/H5WebView'
 import {connect} from 'react-redux'
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { StackNavigator } from 'react-navigation'
 export const Router = {
     Home: {
         title: '首页',
@@ -38,3 +40,10 @@ export const Icon = {
         inactiveTintColor: 'gray',
     }
 }
+export const AppNavigator = StackNavigator(
+    {
+        Home: { screen: Home },
+        Mine: { screen: Mine },
+        H5: { screen: H5 },
+    }
+)

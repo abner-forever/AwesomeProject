@@ -13,8 +13,8 @@ import {
 
 import Page from './src'
 import { Provider } from 'react-redux';
-import store from './src/store';
-
+import AppReducers from './src/store'
+const store = createStore(AppReducers,applyMiddleware(middleware))
 const App: () => React$Node = () => {
   return (
     <>
